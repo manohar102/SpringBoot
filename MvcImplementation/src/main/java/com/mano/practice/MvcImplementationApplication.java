@@ -9,9 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.mano.pactice.models.Hunter;
 
 @SpringBootApplication
 @Controller
@@ -24,7 +27,7 @@ public class MvcImplementationApplication {
 	
 	@GetMapping("/")
 	public String index() {
-		return "index";
+		return "hunterIndex";
 	}
 	
 	@GetMapping("addOldServerlet")
@@ -66,6 +69,24 @@ public class MvcImplementationApplication {
 		int num = i+j;
 		m.addAttribute("num", num);
 		return "result";
+	}
+	
+	@GetMapping("addHunterParam")
+	public String add(@RequestParam("Id") int hId, @RequestParam("Name")String hName,Model m) {
+		Hunter hunter = new Hunter();
+		hunter.setId(hId);
+		hunter.setName(hName);
+		m.addAttribute("hunter",hunter);
+		return "hunterResult";
+	}
+	
+	@ModelAttribute
+	public void method(Model m) {
+		m.addAttribute("name","Manohar");
+	}
+	@GetMapping("addHunter")
+	public String add(@ModelAttribute("hunter") Hunter hunt) {
+		return "hunterResult";
 	}
 
 }
