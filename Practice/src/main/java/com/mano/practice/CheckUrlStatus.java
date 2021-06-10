@@ -1,4 +1,4 @@
-package com.example.mano.controllers;
+package com.mano.practice;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class checkUrlStatus {
-    private final String SITE_IS_UP = "Site is up!";
+public class CheckUrlStatus {
+	private final String SITE_IS_UP = "Site is up!";
     private final String SITE_IS_DOWN = "Site is down!";
     private final String INCORRECT = "URL is Incorrect!";
 
