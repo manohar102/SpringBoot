@@ -23,15 +23,9 @@ we are going to ask again Spring to handle it. For that we add @Component on top
 of Gun class definition. And add @Autowired on top of the Gun variable declaration
 Now we dont need to create a Object also. The Spring will handle everything for us.
 
-@Component                    @Componet
-Class Hunter{				  class Gun{
-								public void shoot(){
-									System.out.println("Shooting...");
-								}
-							   }
-							
-	@Autowired
-	Gun gun;
-	gun.shoot();		
-	
-}
+@Component                      @Componet
+Class Hunter{			class Gun{
+	@Autowired			public void shoot(){
+	Gun gun;				System.out.println("Shooting...");
+	gun.shoot();			}										
+}				}
