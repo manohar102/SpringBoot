@@ -3,6 +3,11 @@ package com.mano.pactice.models;
 public class Hunter {
 	int Id;
 	String Name;
+	public Hunter(int id, String name) {
+		super();
+		Id = id;
+		Name = name;
+	}
 	
 	public int getId() {
 		return Id;
@@ -10,6 +15,7 @@ public class Hunter {
 	public void setId(int id) {
 		Id = id;
 	}
+	
 	public String getName() {
 		return Name;
 	}
