@@ -21,7 +21,8 @@
 		padding:10px;
 		border-radius:10px;
 		width: 500px;
-		margin-top:180px;
+		height: 300px;
+		margin-top:220px;
 	}
 	#sub{
 		background-color:#331b59;
@@ -29,23 +30,23 @@
 		width:100px;
 		border-radius:20px;
 	}
-	p{
+	#error{
 		color:red;
 	}
+	#result{ color : green;}
 </style>
 <body>
 	<center>
 		<div>
-			<p>${error}</p>
-			<h2>Register</h2>
-			<form action="/register" method=POST>
-				<input type="text" name="fullname" placeholder="Full Name"/><br>
+			<p id="error">${error}</p>	
+			<p id="result">${result}</p>
+			<h2>Login</h2>
+			<form action="/" Method=POST>
 				<input type="text" name="username" placeholder="Username"/><br>
 				<input type="password" name="password" placeholder="Password"/><br>
-				<input type="password" name="cpassword" placeholder="Confirm Password"/><br>
-				<input type="submit" id="sub" value="Register"/>
+				<input type="submit" id="sub" value="Login"/>
 			</form>
-			<a href="/"> Already have account? </a>
+			<a href="register"> Don't have account? </a>
 		</div>
 	</center>
 	
