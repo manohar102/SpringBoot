@@ -45,7 +45,7 @@
 				<input type="password" name="cpassword" placeholder="Confirm Password"/><br>
 				<input type="submit" id="sub" value="Register"/>
 			</form>
-			<a href="/"> Already have account? </a>
+			<a href="/login"> Already have account? </a>
 		</div>
 	</center>
 	
