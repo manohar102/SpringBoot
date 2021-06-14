@@ -41,7 +41,7 @@
 			<p id="error">${error}</p>	
 			<p id="result">${result}</p>
 			<h2>Login</h2>
-			<form action="/" Method=POST>
+			<form action="/login" Method=POST>
 				<input type="text" name="username" placeholder="Username"/><br>
 				<input type="password" name="password" placeholder="Password"/><br>
 				<input type="submit" id="sub" value="Login"/>

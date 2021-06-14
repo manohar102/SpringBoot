@@ -28,6 +28,12 @@ public class HomeController {
 	UserRepo repo;
 		
 	@GetMapping("/")
+	@ResponseBody
+	public String man() {
+		return "try /login";
+	}
+	
+	@RequestMapping("/login")
 	public String home() {
 		return "login.jsp";
 	}
@@ -40,6 +46,7 @@ public class HomeController {
 	@PostMapping("/register")
 	public String registerUser(@RequestParam("cpassword") String cpass, User user, Model m) {
 		System.out.println(user.getUsername()+"--"+user.getPassword());
+		
 		if(cpass.equals(user.getPassword())) {	
 			User response = repo.save(user);
 			
@@ -63,24 +70,26 @@ public class HomeController {
 		return "profile.jsp";
 	}
 	
-	@PostMapping("/")
-	public String loginUser(@RequestParam("username") String inputUser,@RequestParam("password") String inputPass,Model m) {
-		User user = repo.getByUsername(inputUser);
-		if(user==null) {
-			m.addAttribute("error","Account Not Found");
-			return "login.jsp";
-		}
-		else {
-			if(inputPass.equals(user.getPassword())) {
-				m.addAttribute("user",user.getFullname());
-				return "profile.jsp";
-			}
-			else {
-				m.addAttribute("error","Invalid Crediantials");
-			}
-		}
-		return "home.jsp";
-	}
+	
+	
+//	@PostMapping("/login")
+//	public String loginUser(@RequestParam("username") String inputUser,@RequestParam("password") String inputPass,Model m) {
+//		User user = repo.getByUsername(inputUser);
+//		if(user==null) {
+//			m.addAttribute("error","Account Not Found");
+//			return "login.jsp";
+//		}
+//		else {
+//			if(inputPass.equals(user.getPassword())) {
+//				m.addAttribute("user",user.getFullname());
+//				return "profile.jsp";
+//			}
+//			else {
+//				m.addAttribute("error","Invalid Crediantials");
+//			}
+//		}
+//		return "home.jsp";
+//	}
 
 	
 	

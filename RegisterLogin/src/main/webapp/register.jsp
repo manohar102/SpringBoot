@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Login</title>
+	<title>Registration</title>
 </head>
 <style>
 	input{
@@ -38,14 +38,14 @@
 		<div>
 			<p>${error}</p>
 			<h2>Register</h2>
-			<form action="/register" method=POST>
+			<form action="register" method=POST>
 				<input type="text" name="fullname" placeholder="Full Name"/><br>
 				<input type="text" name="username" placeholder="Username"/><br>
 				<input type="password" name="password" placeholder="Password"/><br>
 				<input type="password" name="cpassword" placeholder="Confirm Password"/><br>
 				<input type="submit" id="sub" value="Register"/>
 			</form>
-			<a href="/"> Already have account? </a>
+			<a href="/login"> Already have account? </a>
 		</div>
 	</center>
 	

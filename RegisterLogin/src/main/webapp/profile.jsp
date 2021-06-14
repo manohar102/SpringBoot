@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Welcome ${user}
+	Welcome ${user} | <a href="/logout" >Logout</a>
 </body>
 </html>
