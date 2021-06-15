@@ -64,11 +64,11 @@ public class HomeController {
 		return "register.jsp";
 	}
 	
-	@RequestMapping("/profile")
-	public String profile(Model m) {
-		m.addAttribute("user","manoar");
-		return "profile.jsp";
-	}
+//	@RequestMapping("/profile")
+//	public String profile(User user,Model m) {
+//		m.addAttribute("user",user.getFullname());
+//		return "profile.jsp";
+//	}
 	
 	
 	
