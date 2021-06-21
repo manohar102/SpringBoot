@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.notes.jwt;
+package com.notes.DTO;
 
-/**
- *
- * @author Kasyap
- */
-public class JwtTokenProvider {
-    
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
+public class UserDTO {
+    private int uid;
+    private String first_name,last_name,email;
 }

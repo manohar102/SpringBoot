@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.notes.tables;
+package com.notes.model;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,24 +17,31 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name="user")
+@Getter @Setter @NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO,generator="user_generator")
     @SequenceGenerator(name="user_generator", sequenceName = "user_seq")
     private int uid;
-    private String first_name,last_name,email,password;
+    @Column(unique=true,nullable=false)
+    private String email;
     
-    @OneToMany(mappedBy = "user")
+    @Column(nullable=false)
+    private String first_name,last_name,password;
+    
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private Set<Note> notes;
-    
- 
-    public User(){
+
+    public User() {
     	
     }
-
     public User(int uid, String first_name, String last_name, 
     		String email, String password,LinkedHashSet<Note> notes) {
         this.uid = uid;
@@ -45,7 +54,7 @@ public class User {
 
     public int getUid() {
         return uid;
-    }
+}
 
     public String getFirst_name() {
         return first_name;
@@ -87,7 +96,7 @@ public class User {
 		return notes;
 	}
 
-	public void setNotes(LinkedHashSet<Note> notes) {
+	public void setNotes(Set<Note> notes) {
 		this.notes = notes;
 	}
     

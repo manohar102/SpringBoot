@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.notes.repos;
+package com.notes.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.notes.tables.Note;
+import com.notes.model.User;
 
 @Repository
-public interface NoteRepository extends CrudRepository<Note,Integer> {
+public interface UserRepository extends CrudRepository<User,Integer> {
+    User getUserByEmail(String email);
     
 }
