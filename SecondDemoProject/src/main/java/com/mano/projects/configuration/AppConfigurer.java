@@ -14,20 +14,19 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.mano.projects.services.CustomUserDetailsService;
+import com.mano.projects.service.CustomUserDetailsService;
+
+import lombok.RequiredArgsConstructor;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity @RequiredArgsConstructor(onConstructor=@__(@Autowired))
 public class AppConfigurer extends WebSecurityConfigurerAdapter {
 	
-	@Autowired
-	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+	private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 	
-	@Autowired
-	private CustomUserDetailsService customUserDetailsService;
-	
-	@Autowired
-	private JwtRequestFilter jwtRequestFilter;
+	private final CustomUserDetailsService customUserDetailsService;
+
+	private final JwtRequestFilter jwtRequestFilter;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

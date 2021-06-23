@@ -1,4 +1,4 @@
-package com.mano.projects.models;
+package com.mano.projects.model;
 
 import java.util.Collection;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.mano.projects.services;
+package com.mano.projects.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,19 +6,19 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.mano.projects.models.CustomUserDetails;
-import com.mano.projects.models.User;
-import com.mano.projects.repositories.UserRepository;
+import com.mano.projects.model.CustomUserDetails;
+import com.mano.projects.model.User;
+import com.mano.projects.repository.UserRepository;
 
-@Service
+import lombok.RequiredArgsConstructor;
+
+@Service @RequiredArgsConstructor(onConstructor=@__(@Autowired))
 public class CustomUserDetailsService implements UserDetailsService {
 	
-	@Autowired
-	private UserRepository userRepository;
+	private final UserRepository userRepository;
 
 	@Override
 	public CustomUserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
 		User user = userRepository.findByEmail(email);
 		
 		if(user==null) {

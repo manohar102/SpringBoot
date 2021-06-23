@@ -1,4 +1,4 @@
-package com.mano.projects.controllers;
+package com.mano.projects.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,28 +15,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mano.projects.configuration.JwtTokenUtil;
-import com.mano.projects.models.CustomUserDetails;
-import com.mano.projects.models.JwtResponseToken;
-import com.mano.projects.models.User;
-import com.mano.projects.repositories.UserRepository;
-import com.mano.projects.services.CustomUserDetailsService;
+import com.mano.projects.model.CustomUserDetails;
+import com.mano.projects.model.JwtResponseToken;
+import com.mano.projects.model.User;
+import com.mano.projects.repository.UserRepository;
+import com.mano.projects.service.CustomUserDetailsService;
 
-@RestController
+import lombok.RequiredArgsConstructor;
+
+@RestController @RequiredArgsConstructor(onConstructor=@__(@Autowired))
 public class AuthController {
 	
-	@Autowired
-	private UserRepository userRepository;
+	private final UserRepository userRepository;
 	
-	@Autowired
-	private AuthenticationManager authenticationManager;
+	private final AuthenticationManager authenticationManager;
 	
-	@Autowired
-	private JwtTokenUtil jwtTokenUtil;
+	private final JwtTokenUtil jwtTokenUtil;
 	
-	@Autowired
-	private CustomUserDetailsService userDetailsService;
+	private final CustomUserDetailsService userDetailsService;
 	
-	@PostMapping("authenticate")
+	@PostMapping(path = "authenticate", consumes = {"application/json"},produces= {"application/json"})
 	public ResponseEntity createAuthenticationToken(@RequestBody User user) throws Exception {
 		try{
 			authenticate(user.getEmail(),user.getPassword());
@@ -60,11 +58,6 @@ public class AuthController {
 		catch(BadCredentialsException e) {
 			throw new Exception("INVALID_CREDENTIALS",e);
 		}
-	}
-	
-	@GetMapping("users")
-	public List<User> users(){
-		return userRepository.findAll();
 	}
 	
 }

@@ -14,20 +14,19 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.mano.projects.models.CustomUserDetails;
-import com.mano.projects.services.CustomUserDetailsService;
+import com.mano.projects.model.CustomUserDetails;
+import com.mano.projects.service.CustomUserDetailsService;
 import com.sun.net.httpserver.Filter.Chain;
 
 import io.jsonwebtoken.ExpiredJwtException;
+import lombok.RequiredArgsConstructor;
 
-@Component
+@Component @RequiredArgsConstructor(onConstructor=@__(@Autowired))
 public class JwtRequestFilter extends OncePerRequestFilter {
 	
-	@Autowired
-	private CustomUserDetailsService userDetailsService;
+	private final CustomUserDetailsService userDetailsService;
 	
-	@Autowired
-	private JwtTokenUtil jwtTokenUtil;
+	private final JwtTokenUtil jwtTokenUtil;
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
