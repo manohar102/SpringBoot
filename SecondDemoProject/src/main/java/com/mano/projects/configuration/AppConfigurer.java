@@ -11,12 +11,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.mano.projects.service.CustomUserDetailsService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity @RequiredArgsConstructor(onConstructor=@__(@Autowired))
@@ -27,12 +28,17 @@ public class AppConfigurer extends WebSecurityConfigurerAdapter {
 	private final CustomUserDetailsService customUserDetailsService;
 
 	private final JwtRequestFilter jwtRequestFilter;
+        
+        @Bean
+        public PasswordEncoder passwordEncoder() {
+            return new BCryptPasswordEncoder();
+        }
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.csrf().disable()
-			.authorizeRequests().antMatchers("/authenticate").permitAll()
+			.authorizeRequests().antMatchers("/authenticate","/user/register").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
@@ -57,7 +63,7 @@ public class AppConfigurer extends WebSecurityConfigurerAdapter {
 	public AuthenticationProvider authProvider() {	
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
 		provider.setUserDetailsService(customUserDetailsService);
-		provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());	
+		provider.setPasswordEncoder(passwordEncoder());	
 		return provider;
 	}
 

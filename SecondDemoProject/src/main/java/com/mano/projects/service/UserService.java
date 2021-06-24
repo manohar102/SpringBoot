@@ -1,18 +1,23 @@
 package com.mano.projects.service;
 
+import com.mano.projects.dto.UserDto;
 import java.util.List;
 
 import com.mano.projects.model.User;
 
 public interface UserService {
-	List<User> getAllUsers();
+	List<UserDto> getAllUsers();
 	
-	User createUser(User user);
+	UserDto createUser(User user) throws Exception ;
 	
-	User updateUser(int id, User user);
+	UserDto updateUser(int id, User user) throws Exception;
 	
-	void deleteUser(int id);
+	void deleteUser(int id) throws Exception;
 	
-	User getUserById(int id);
+	UserDto getUserById(int id) throws Exception;
+        
+        boolean userAlreadyExist(String email);
+        
+        boolean userAlreadyExist(int id);
 	
 }

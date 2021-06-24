@@ -22,17 +22,18 @@ import com.mano.projects.repository.UserRepository;
 import com.mano.projects.service.CustomUserDetailsService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @RestController @RequiredArgsConstructor(onConstructor=@__(@Autowired))
 public class AuthController {
-	
-	private final UserRepository userRepository;
 	
 	private final AuthenticationManager authenticationManager;
 	
 	private final JwtTokenUtil jwtTokenUtil;
 	
 	private final CustomUserDetailsService userDetailsService;
+        
+        private final PasswordEncoder passwordEncoder;
 	
 	@PostMapping(path = "authenticate", consumes = {"application/json"},produces= {"application/json"})
 	public ResponseEntity createAuthenticationToken(@RequestBody User user) throws Exception {
